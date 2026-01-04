@@ -9,6 +9,7 @@ pub mod db;
 pub mod errors;
 pub mod fx;
 pub mod goals;
+pub mod integrations;
 pub mod limits;
 pub mod market_data;
 pub mod portfolio;
