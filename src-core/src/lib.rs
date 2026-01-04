@@ -2,6 +2,7 @@ pub mod accounts;
 pub mod activities;
 pub mod addons;
 pub mod assets;
+pub mod broker_connections;
 pub mod constants;
 pub mod db;
 

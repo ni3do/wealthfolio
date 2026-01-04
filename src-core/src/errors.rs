@@ -54,6 +54,15 @@ pub enum Error {
     #[error("Secret store error: {0}")]
     Secret(String),
 
+    #[error("Resource not found: {0}")]
+    NotFound(String),
+
+    #[error("Invalid input: {0}")]
+    InvalidInput(String),
+
+    #[error("Parse error: {0}")]
+    ParseError(String),
+
     #[error("Unexpected error: {0}")]
     Unexpected(String),
 
