@@ -65,6 +65,9 @@ export const QueryKeys = {
   ADDON_STORE_LISTINGS: "addonStoreListings",
   ADDON_AUTO_UPDATE_CHECK: "addonAutoUpdateCheck",
 
+  // Broker Connections
+  BROKER_CONNECTIONS: "brokerConnections",
+
   secrets: {
     apiKey: (providerId: string) => ["secrets", "apiKey", providerId],
   },

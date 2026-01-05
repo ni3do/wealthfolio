@@ -192,6 +192,27 @@ export const AccountSelectionStep = ({
         </div>
       </div>
 
+      {/* Broker Sync Option */}
+      <div className="bg-muted/50 border-border flex items-center justify-between rounded-lg border p-4">
+        <div className="flex items-center gap-3">
+          <Icons.Cloud className="text-muted-foreground h-5 w-5" />
+          <div>
+            <p className="text-sm font-medium">Sync from Interactive Brokers</p>
+            <p className="text-muted-foreground text-xs">
+              Connect your IBKR account for automatic activity import
+            </p>
+          </div>
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => navigate("/settings/broker-connections")}
+        >
+          <Icons.Settings className="mr-2 h-4 w-4" />
+          Manage Connections
+        </Button>
+      </div>
+
       {/* Row 2: CSV Viewer or Error Display */}
       <div className="min-h-[150px]">
         {/* Always show CSV viewer when data is available (with or without errors) */}
