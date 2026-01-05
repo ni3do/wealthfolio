@@ -4,9 +4,11 @@ use std::sync::{Arc, RwLock};
 use wealthfolio_core::{
     accounts::{AccountRepository, AccountService},
     activities::{ActivityRepository, ActivityService},
+    broker_connections::{BrokerConnectionRepository, BrokerConnectionService},
     db::{self, write_actor},
     fx::{FxRepository, FxService, FxServiceTrait},
     goals::{GoalRepository, GoalService},
+    integrations::ibkr::IBKRSyncService,
     limits::{ContributionLimitRepository, ContributionLimitService},
     market_data::{MarketDataRepository, MarketDataService, MarketDataServiceTrait},
     portfolio::{
@@ -46,6 +48,10 @@ pub async fn initialize_context(
     let fx_repository = Arc::new(FxRepository::new(pool.clone(), writer.clone()));
     let snapshot_repository = Arc::new(SnapshotRepository::new(pool.clone(), writer.clone()));
     let valuation_repository = Arc::new(ValuationRepository::new(pool.clone(), writer.clone()));
+    let broker_connection_repository = Arc::new(BrokerConnectionRepository::new(
+        pool.clone(),
+        writer.clone(),
+    ));
     // Instantiate Transaction Executor using the Arc<DbPool> directly
     let transaction_executor = pool.clone();
 
@@ -134,6 +140,18 @@ pub async fn initialize_context(
         holdings_valuation_service.clone(),
     ));
 
+    // Initialize broker connection service
+    let broker_connection_service = Arc::new(BrokerConnectionService::new(
+        broker_connection_repository.clone(),
+        secret_store.clone(),
+    ));
+
+    // Initialize IBKR sync service
+    let ibkr_sync_service = Arc::new(IBKRSyncService::new(
+        broker_connection_service.clone(),
+        activity_service.clone(),
+    )?);
+
     Ok(ServiceContext {
         base_currency,
         instance_id,
@@ -150,5 +168,7 @@ pub async fn initialize_context(
         snapshot_service,
         holdings_service,
         valuation_service,
+        broker_connection_service,
+        ibkr_sync_service,
     })
 }

@@ -186,6 +186,16 @@ pub fn run() {
             commands::activity::import_activities,
             commands::activity::get_account_import_mapping,
             commands::activity::save_account_import_mapping,
+            // Broker connection commands
+            commands::broker_connection::get_broker_connections,
+            commands::broker_connection::get_broker_connection,
+            commands::broker_connection::create_broker_connection,
+            commands::broker_connection::update_broker_connection,
+            commands::broker_connection::delete_broker_connection,
+            commands::broker_connection::toggle_broker_connection,
+            commands::broker_connection::test_broker_connection,
+            commands::broker_connection::sync_broker_connection,
+            commands::broker_connection::sync_broker_connection_for_review,
             // Settings commands
             commands::settings::get_settings,
             commands::settings::is_auto_update_check_enabled,

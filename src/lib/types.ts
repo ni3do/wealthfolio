@@ -357,6 +357,57 @@ export interface SettingsContextType {
   setAccountsGrouped: (value: boolean) => void;
 }
 
+export interface BrokerConnection {
+  id: string;
+  brokerType: string;
+  name: string;
+  accountId?: string | null;
+  config: BrokerConnectionConfig;
+  isActive: boolean;
+  lastSyncAt?: string | null;
+  lastSyncStatus?: string | null;
+  lastSyncError?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BrokerConnectionConfig {
+  queryId: string;
+  syncInterval: "Manual" | "Daily" | "Weekly";
+  format: "Xml" | "Csv";
+  autoImport: boolean;
+  lastReferenceCode?: string | null;
+}
+
+export interface CreateBrokerConnectionRequest {
+  brokerType: string;
+  name: string;
+  accountId?: string | null;
+  queryId: string;
+  token: string;
+  syncInterval?: string | null;
+  format?: string | null;
+  autoImport: boolean;
+}
+
+export interface UpdateBrokerConnectionRequest {
+  name?: string | null;
+  accountId?: string | null;
+  queryId?: string | null;
+  token?: string | null;
+  syncInterval?: string | null;
+  format?: string | null;
+  autoImport?: boolean | null;
+}
+
+export interface SyncResult {
+  connectionId: string;
+  success: boolean;
+  activitiesCount: number;
+  error?: string | null;
+  syncedAt: string;
+}
+
 export interface Goal {
   id: string;
   title: string;
