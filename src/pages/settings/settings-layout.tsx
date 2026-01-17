@@ -24,6 +24,12 @@ const sidebarNavItems = [
     icon: <Icons.CreditCard className="h-5 w-5" />,
   },
   {
+    title: "Broker Connections",
+    href: "broker-connections",
+    subtitle: "Connect to Interactive Brokers",
+    icon: <Icons.Cloud className="h-5 w-5" />,
+  },
+  {
     title: "Limits",
     href: "contribution-limits",
     subtitle: "Contribution limits and rules",

@@ -50,6 +50,19 @@ export const newGoalSchema = z.object({
   isAchieved: z.boolean().optional(),
 });
 
+export const brokerConnectionSchema = z.object({
+  id: z.string().optional(),
+  name: z
+    .string()
+    .min(2, { message: "Name must be at least 2 characters." })
+    .max(100, { message: "Name must not be longer than 100 characters." }),
+  accountId: z.string().optional().nullable(),
+  queryId: z.string().min(1, { message: "Query ID is required." }),
+  token: z.string().min(1, { message: "Flex Query Token is required." }),
+  syncInterval: z.enum(["Manual", "Daily", "Weekly"]).default("Manual"),
+  autoImport: z.boolean().default(true),
+});
+
 export const importActivitySchema = z
   .object({
     id: z.string().uuid().optional(),

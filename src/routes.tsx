@@ -16,6 +16,7 @@ import PortfolioInsightsPage from "@/pages/insights/portfolio-insights";
 import PerformancePage from "@/pages/performance/performance-page";
 import SettingsAccountsPage from "@/pages/settings/accounts/accounts-page";
 import SettingsAppearancePage from "@/pages/settings/appearance/appearance-page";
+import BrokerConnectionsPage from "@/pages/settings/broker-connections/broker-connections-page";
 import AccountPage from "./pages/account/account-page";
 import AssetProfilePage from "./pages/asset/asset-profile-page";
 import OnboardingPage from "./pages/onboarding/onboarding-page";
@@ -99,6 +100,7 @@ export function AppRoutes() {
             <Route index element={<GeneralSettingsPage />} />
             <Route path="general" element={<GeneralSettingsPage />} />
             <Route path="accounts" element={<SettingsAccountsPage />} />
+            <Route path="broker-connections" element={<BrokerConnectionsPage />} />
             <Route path="goals" element={<SettingsGoalsPage />} />
             <Route path="appearance" element={<SettingsAppearancePage />} />
             <Route path="about" element={<AboutSettingsPage />} />
